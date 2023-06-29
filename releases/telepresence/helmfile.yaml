@@ -1,0 +1,34 @@
+environments:
+  dev:
+    values:
+      - defaults.yaml
+      - env/dev.yaml
+  test:
+    values:
+      - defaults.yaml
+      - env/test.yaml
+---
+repositories:
+  - name: datawire
+    url: https://app.getambassador.io
+
+releases:
+  - name: traffic-manager
+    chart: datawire/telepresence
+    installed: {{.Values | get "installed" true}}
+    version: "2.14.0"
+    namespace: ambassador
+    values:
+      - clientRbac:
+          create: true
+          namespaced: true
+          subjects:
+            {{- range $k, $v :=  .Values.groups | fromJson }}
+            - kind: Group
+              name: {{$v.rbacGroup}}
+              namespace: {{$v.namespace}}
+              apiGroup: rbac.authorization.k8s.io
+            {{- end }}
+        client:
+          routing:
+            alsoProxySubnets: {{.Values.privateSubnets}}

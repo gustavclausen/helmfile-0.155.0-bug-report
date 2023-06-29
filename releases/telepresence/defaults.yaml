@@ -1,0 +1,6 @@
+groups: |
+  {
+    "demo": {
+      "namespace": "demo",
+      "rbacGroup": "demo-group"
+    }

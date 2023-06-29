@@ -1,0 +1,9 @@
+environments:
+  dev:
+  test:
+  stage:
+  prod:
+---
+helmfiles:
+  - path: releases/external-dns/helmfile.yaml
+  - path: releases/telepresence/helmfile.yaml

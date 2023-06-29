@@ -1,0 +1,34 @@
+environments:
+  dev:
+    values:
+      - defaults.yaml
+      - env/dev.yaml
+  test:
+    values:
+      - defaults.yaml
+      - env/test.yaml
+  stage:
+    values:
+      - defaults.yaml
+      - env/stage.yaml
+  prod:
+    values:
+      - defaults.yaml
+      - env/prod.yaml
+---
+repositories:
+  - name: external-dns
+    url: https://kubernetes-sigs.github.io/external-dns/
+
+releases:
+  - name: external-dns
+    chart: external-dns/external-dns
+    installed: {{.Values | get "installed" true}}
+    version: "1.13.0"
+    namespace: external-dns
+    values:
+      - sources:
+          - service
+        domainFilters:
+          - "sub1.{{.Values.environment}}.example.com"
+          - "sub2.{{.Values.environment}}.example.com"
