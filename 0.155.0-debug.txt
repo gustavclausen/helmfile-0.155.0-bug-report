@@ -1,0 +1,275 @@
+
+processing file "helmfile.yaml" in directory "."
+changing working directory to "/Users/gustavclausen/dev/helmfile-0.155.0-bug-report"
+first-pass rendering starting for "helmfile.yaml.part.0": inherited=&{stage  map[] map[]}, overrode=<nil>
+first-pass uses: &{stage  map[] map[]}
+first-pass rendering output of "helmfile.yaml.part.0":
+ 0: environments:
+ 1:   dev:
+ 2:   test:
+ 3:   stage:
+ 4:   prod:
+
+first-pass produced: &{stage  map[] map[]}
+first-pass rendering result of "helmfile.yaml.part.0": {stage  map[] map[]}
+vals:
+map[]
+defaultVals:[]
+second-pass rendering result of "helmfile.yaml.part.0":
+ 0: environments:
+ 1:   dev:
+ 2:   test:
+ 3:   stage:
+ 4:   prod:
+
+merged environment: &{stage  map[] map[]}
+first-pass rendering starting for "helmfile.yaml.part.1": inherited=&{stage  map[] map[]}, overrode=<nil>
+first-pass uses: &{stage  map[] map[]}
+first-pass rendering output of "helmfile.yaml.part.1":
+ 0: helmfiles:
+ 1:   - path: releases/external-dns/helmfile.yaml
+ 2:   - path: releases/telepresence/helmfile.yaml
+ 3:
+
+first-pass produced: &{stage  map[] map[]}
+first-pass rendering result of "helmfile.yaml.part.1": {stage  map[] map[]}
+vals:
+map[]
+defaultVals:[]
+second-pass rendering result of "helmfile.yaml.part.1":
+ 0: helmfiles:
+ 1:   - path: releases/external-dns/helmfile.yaml
+ 2:   - path: releases/telepresence/helmfile.yaml
+ 3:
+
+merged environment: &{stage  map[] map[]}
+processing file "helmfile.yaml" in directory "releases/external-dns"
+changing working directory to "/Users/gustavclausen/dev/helmfile-0.155.0-bug-report/releases/external-dns"
+first-pass rendering starting for "helmfile.yaml.part.0": inherited=&{stage  map[] map[]}, overrode=<nil>
+first-pass uses: &{stage  map[] map[]}
+first-pass rendering output of "helmfile.yaml.part.0":
+ 0: environments:
+ 1:   dev:
+ 2:     values:
+ 3:       - defaults.yaml
+ 4:       - env/dev.yaml
+ 5:   test:
+ 6:     values:
+ 7:       - defaults.yaml
+ 8:       - env/test.yaml
+ 9:   stage:
+10:     values:
+11:       - defaults.yaml
+12:       - env/stage.yaml
+13:   prod:
+14:     values:
+15:       - defaults.yaml
+16:       - env/prod.yaml
+
+envvals_loader: loaded defaults.yaml:map[]
+envvals_loader: loaded env/stage.yaml:map[environment:stage]
+first-pass produced: &{stage  map[environment:stage] map[]}
+first-pass rendering result of "helmfile.yaml.part.0": {stage  map[environment:stage] map[]}
+vals:
+map[environment:stage]
+defaultVals:[]
+second-pass rendering result of "helmfile.yaml.part.0":
+ 0: environments:
+ 1:   dev:
+ 2:     values:
+ 3:       - defaults.yaml
+ 4:       - env/dev.yaml
+ 5:   test:
+ 6:     values:
+ 7:       - defaults.yaml
+ 8:       - env/test.yaml
+ 9:   stage:
+10:     values:
+11:       - defaults.yaml
+12:       - env/stage.yaml
+13:   prod:
+14:     values:
+15:       - defaults.yaml
+16:       - env/prod.yaml
+
+envvals_loader: loaded defaults.yaml:map[]
+envvals_loader: loaded env/stage.yaml:map[environment:stage]
+merged environment: &{stage  map[environment:stage] map[]}
+first-pass rendering starting for "helmfile.yaml.part.1": inherited=&{stage  map[environment:stage] map[]}, overrode=<nil>
+first-pass uses: &{stage  map[environment:stage] map[]}
+first-pass rendering output of "helmfile.yaml.part.1":
+ 0: repositories:
+ 1:   - name: external-dns
+ 2:     url: https://kubernetes-sigs.github.io/external-dns/
+ 3:
+ 4: releases:
+ 5:   - name: external-dns
+ 6:     chart: external-dns/external-dns
+ 7:     installed: true
+ 8:     version: "1.13.0"
+ 9:     namespace: external-dns
+10:     values:
+11:       - sources:
+12:           - service
+13:         domainFilters:
+14:           - "sub1.<no value>.example.com"
+15:           - "sub2.<no value>.example.com"
+16:
+
+replaced <no value>s to workaround https://github.com/golang/go/issues/24963 to address https://github.com/roboll/helmfile/issues/553:
+  (
+        """
+        ... // 12 identical lines
+                  - service
+                domainFilters:
+-                 - "sub1.<no value>.example.com"
+-                 - "sub2.<no value>.example.com"
++                 - "sub1..example.com"
++                 - "sub2..example.com"
+        """
+  )
+
+first-pass produced: &{stage  map[environment:stage] map[]}
+first-pass rendering result of "helmfile.yaml.part.1": {stage  map[environment:stage] map[]}
+vals:
+map[environment:stage]
+defaultVals:[]
+second-pass rendering result of "helmfile.yaml.part.1":
+ 0: repositories:
+ 1:   - name: external-dns
+ 2:     url: https://kubernetes-sigs.github.io/external-dns/
+ 3:
+ 4: releases:
+ 5:   - name: external-dns
+ 6:     chart: external-dns/external-dns
+ 7:     installed: true
+ 8:     version: "1.13.0"
+ 9:     namespace: external-dns
+10:     values:
+11:       - sources:
+12:           - service
+13:         domainFilters:
+14:           - "sub1.stage.example.com"
+15:           - "sub2.stage.example.com"
+16:
+
+merged environment: &{stage  map[environment:stage] map[]}
+helm:BcvGC> v3.12.1+gf32a527
+helm:BcvGC>
+changing working directory back to "/Users/gustavclausen/dev/helmfile-0.155.0-bug-report"
+processing file "helmfile.yaml" in directory "releases/telepresence"
+changing working directory to "/Users/gustavclausen/dev/helmfile-0.155.0-bug-report/releases/telepresence"
+first-pass rendering starting for "helmfile.yaml.part.0": inherited=&{stage  map[] map[]}, overrode=<nil>
+first-pass uses: &{stage  map[] map[]}
+first-pass rendering output of "helmfile.yaml.part.0":
+ 0: environments:
+ 1:   dev:
+ 2:     values:
+ 3:       - defaults.yaml
+ 4:       - env/dev.yaml
+ 5:   test:
+ 6:     values:
+ 7:       - defaults.yaml
+ 8:       - env/test.yaml
+
+first-pass produced: &{stage  map[] map[]}
+first-pass rendering result of "helmfile.yaml.part.0": {stage  map[] map[]}
+vals:
+map[]
+defaultVals:[]
+second-pass rendering result of "helmfile.yaml.part.0":
+ 0: environments:
+ 1:   dev:
+ 2:     values:
+ 3:       - defaults.yaml
+ 4:       - env/dev.yaml
+ 5:   test:
+ 6:     values:
+ 7:       - defaults.yaml
+ 8:       - env/test.yaml
+
+merged environment: &{stage  map[] map[]}
+first-pass rendering starting for "helmfile.yaml.part.1": inherited=&{stage  map[] map[]}, overrode=<nil>
+first-pass uses: &{stage  map[] map[]}
+first-pass rendering input of "helmfile.yaml.part.1":
+ 0: repositories:
+ 1:   - name: datawire
+ 2:     url: https://app.getambassador.io
+ 3:
+ 4: releases:
+ 5:   - name: traffic-manager
+ 6:     chart: datawire/telepresence
+ 7:     installed: {{.Values | get "installed" true}}
+ 8:     version: "2.14.0"
+ 9:     namespace: ambassador
+10:     values:
+11:       - clientRbac:
+12:           create: true
+13:           namespaced: true
+14:           subjects:
+15:             {{- range $k, $v :=  .Values.groups | fromJson }}
+16:             - kind: Group
+17:               name: {{$v.rbacGroup}}
+18:               namespace: {{$v.namespace}}
+19:               apiGroup: rbac.authorization.k8s.io
+20:             {{- end }}
+21:         client:
+22:           routing:
+23:             alsoProxySubnets: {{.Values.privateSubnets}}
+24:
+
+template syntax error: template: stringTemplate:16:50: executing "stringTemplate" at <fromJson>: invalid value; expected string
+first-pass rendering output of "helmfile.yaml.part.1":
+ 0: repositories:
+ 1:   - name: datawire
+ 2:     url: https://app.getambassador.io
+ 3:
+ 4: releases:
+ 5:   - name: traffic-manager
+ 6:     chart: datawire/telepresence
+ 7:     installed: true
+ 8:     version: "2.14.0"
+ 9:     namespace: ambassador
+10:     values:
+11:       - clientRbac:
+12:           create: true
+13:           namespaced: true
+14:           subjects:
+
+first-pass produced: &{stage  map[] map[]}
+first-pass rendering result of "helmfile.yaml.part.1": {stage  map[] map[]}
+vals:
+map[]
+defaultVals:[]
+second-pass rendering failed, input of "helmfile.yaml.part.1":
+ 0: repositories:
+ 1:   - name: datawire
+ 2:     url: https://app.getambassador.io
+ 3:
+ 4: releases:
+ 5:   - name: traffic-manager
+ 6:     chart: datawire/telepresence
+ 7:     installed: {{.Values | get "installed" true}}
+ 8:     version: "2.14.0"
+ 9:     namespace: ambassador
+10:     values:
+11:       - clientRbac:
+12:           create: true
+13:           namespaced: true
+14:           subjects:
+15:             {{- range $k, $v :=  .Values.groups | fromJson }}
+16:             - kind: Group
+17:               name: {{$v.rbacGroup}}
+18:               namespace: {{$v.namespace}}
+19:               apiGroup: rbac.authorization.k8s.io
+20:             {{- end }}
+21:         client:
+22:           routing:
+23:             alsoProxySubnets: {{.Values.privateSubnets}}
+24:
+
+err: error during helmfile.yaml.part.1 parsing: template: stringTemplate:16:40: executing "stringTemplate" at <.Values.groups>: map has no entry for key "groups"
+changing working directory back to "/Users/gustavclausen/dev/helmfile-0.155.0-bug-report"
+changing working directory back to "/Users/gustavclausen/dev/helmfile-0.155.0-bug-report"
+in ./helmfile.yaml: in .helmfiles[1]: in releases/telepresence/helmfile.yaml: error during helmfile.yaml.part.1 parsing: template: stringTemplate:16:40: executing "stringTemplate" at <.Values.groups>: map has no entry for key "groups"
+
